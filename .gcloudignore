@@ -1,0 +1,10 @@
+# Files NOT uploaded to Cloud Build when deploying with `gcloud run deploy --source .`
+# (deps are reinstalled inside the container, so node_modules must not be uploaded).
+node_modules/
+.git/
+.gitignore
+.env
+.claude/
+npm-debug.log*
+.DS_Store
+deploy.sh

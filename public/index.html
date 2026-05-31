@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flappy Workout — Game Screen</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body class="game-body">
+  <div class="stage">
+    <header class="topbar">
+      <h1 class="logo">FLAPPY<span>WORKOUT</span></h1>
+      <div class="challenge-bar" id="challengeBar">
+        <button id="challengeBtn" class="btn btn-accent">⚡ Generate Challenge</button>
+        <div class="challenge-text" id="challengeText"></div>
+      </div>
+    </header>
+
+    <main class="play-area">
+      <div class="canvas-wrap">
+        <canvas id="game" width="900" height="600"></canvas>
+        <!-- Net latency debug (enable with ?debug=1) -->
+        <div id="netDebug" style="position:absolute;top:8px;left:8px;z-index:50;font:11px/1.4 monospace;color:#9fe;opacity:.75;background:rgba(0,0,0,.4);padding:3px 7px;border-radius:5px;pointer-events:none;display:none">net —</div>
+
+        <!-- Instructions, shown on launch -->
+        <div class="overlay" id="introOverlay">
+          <h2>How to Play</h2>
+          <ol class="howto">
+            <li><b>Your phone is the controller</b> — you'll scan a QR code to connect it.</li>
+            <li><b>Do reps to fly.</b> Raise your arm and the bird rises; lower it and the bird drops.</li>
+            <li><b>Thread the gaps.</b> One full up-and-down curl = <b>1 rep</b>.</li>
+            <li><b>Score</b> by clearing obstacles — then climb the leaderboard!</li>
+          </ol>
+          <button id="introNextBtn" class="btn btn-accent">Next →</button>
+        </div>
+
+        <!-- Workout + weight selection -->
+        <div class="overlay hidden" id="setupOverlay">
+          <h2>Pick your workout</h2>
+          <div class="workout-grid">
+            <button class="workout-card selected" data-workout="Bicep Curl"><span class="wc-emoji">💪</span><span>Bicep Curl</span></button>
+            <button class="workout-card" disabled><span class="wc-emoji">🏋️</span><span>Squat</span><small>soon</small></button>
+            <button class="workout-card" disabled><span class="wc-emoji">🙆</span><span>Shoulder Press</span><small>soon</small></button>
+          </div>
+          <div class="weight-row">
+            <label for="weightInput">Weight you're lifting</label>
+            <div class="weight-input">
+              <input id="weightInput" type="number" min="0" max="999" step="1" value="20" inputmode="numeric" />
+              <div class="unit-toggle" id="unitToggle">
+                <button class="unit selected" data-unit="lb">lb</button>
+                <button class="unit" data-unit="kg">kg</button>
+              </div>
+            </div>
+          </div>
+          <button id="setupStartBtn" class="btn btn-accent">Start →</button>
+        </div>
+
+        <!-- Overlay shown before a controller is paired -->
+        <div class="overlay hidden" id="pairOverlay">
+          <h2>Scan to grab your controller</h2>
+          <img id="qr" class="qr" alt="Scan with your iPhone" />
+          <div class="roomcode">Room <span id="roomCode">····</span></div>
+          <p class="hint" id="pairHint">Open the link on your iPhone, tap <b>Enable Motion</b>, then calibrate.</p>
+          <button id="mouseModeBtn" class="btn btn-ghost">No phone? Play with mouse →</button>
+        </div>
+
+        <!-- Overlay shown at game over -->
+        <div class="overlay hidden" id="overOverlay">
+          <h2>Run Over!</h2>
+          <div class="finalstats">
+            <div><span id="finalScore">0</span><label>obstacles</label></div>
+            <div><span id="finalReps">0</span><label>reps</label></div>
+            <div><span id="finalVolume">0</span><label id="finalVolumeLabel">lb lifted</label></div>
+          </div>
+          <div class="namerow">
+            <input id="nameInput" maxlength="16" placeholder="Your name" />
+            <button id="submitScoreBtn" class="btn btn-accent">Save score</button>
+          </div>
+          <button id="againBtn" class="btn btn-ghost">Play again</button>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="hud">
+          <div class="hud-item"><span id="hudScore">0</span><label>Score</label></div>
+          <div class="hud-item"><span id="hudReps">0</span><label>Reps<small id="repGoal"></small></label></div>
+        </div>
+        <div class="workout-chip" id="workoutChip"></div>
+        <div class="status" id="status">Waiting for controller…</div>
+        <div class="height-meter"><div class="height-fill" id="heightFill"></div></div>
+
+        <h3>🏆 Leaderboard</h3>
+        <ol class="leaderboard" id="leaderboard"></ol>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/js/game.js"></script>
+</body>
+</html>

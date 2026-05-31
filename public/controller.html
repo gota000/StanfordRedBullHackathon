@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Flappy Workout — Controller</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body class="ctrl-body">
+  <div class="ctrl">
+    <h1 class="logo small">FLAPPY<span>WORKOUT</span></h1>
+    <div class="ctrl-status" id="status">Connecting…</div>
+    <div id="debug" style="font:11px/1.4 monospace;opacity:.55;text-align:center;margin-top:4px">—</div>
+
+    <!-- Step 1: iOS motion permission -->
+    <section class="step" id="stepPermission">
+      <p>Hold your phone in your hand. We'll use its motion to fly the bird with your arm.</p>
+      <button id="enableBtn" class="btn btn-accent big">Enable Motion</button>
+    </section>
+
+    <!-- Step 2: calibration -->
+    <section class="step hidden" id="stepCalibrate">
+      <h2 id="calTitle">Calibrate: arm LOW</h2>
+      <p id="calHint">Hold your arm <b>all the way down</b>, then tap capture.</p>
+      <div class="tilt-readout"><div class="tilt-fill" id="tiltFill"></div></div>
+      <button id="captureBtn" class="btn btn-accent big">Capture LOW</button>
+    </section>
+
+    <!-- Step 3: playing -->
+    <section class="step hidden" id="stepPlay">
+      <h2>You're in! 💪</h2>
+      <p>Raise and lower your arm to fly. Watch the laptop screen!</p>
+      <div class="big-reps"><span id="reps">0</span><label>reps</label></div>
+      <div class="height-meter big"><div class="height-fill" id="heightFill"></div></div>
+      <button id="recalBtn" class="btn btn-ghost">Recalibrate</button>
+    </section>
+  </div>
+
+  <script src="/js/controller.js"></script>
+</body>
+</html>

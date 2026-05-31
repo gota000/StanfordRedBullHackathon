@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FitFlap — One-Pager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,700;0,800;0,900;1,800;1,900&family=Hanken+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:      #090d18;
+    --bg2:     #121a30;
+    --ink:     #eef3ff;
+    --muted:   #93a2c6;
+    --faint:   #64739a;
+    --electric:#1e90ff;
+    --electric2:#0a5cc4;
+    --accent:  #ffdb1e;   /* energy yellow */
+    --accent2: #f3b700;
+    --red:     #ff3b3b;
+    --green:   #36d399;
+    --panel:   rgba(255,255,255,0.045);
+    --panel2:  rgba(255,255,255,0.025);
+    --border:  rgba(255,255,255,0.12);
+    --hairline:rgba(255,255,255,0.08);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    font-family: 'Hanken Grotesk', 'Segoe UI', system-ui, sans-serif;
+    color: var(--ink);
+    background: #05070f;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Screen presentation: page floating on a dark desk */
+  body {
+    display: flex;
+    justify-content: center;
+    padding: 28px 16px 60px;
+    background:
+      radial-gradient(900px 500px at 50% -8%, rgba(30,144,255,0.10), transparent 60%),
+      #05070f;
+  }
+
+  .page {
+    position: relative;
+    width: 8.5in;
+    height: 11in;
+    padding: 0.42in 0.46in 0.4in;
+    overflow: hidden;
+    background:
+      radial-gradient(1100px 560px at 86% -12%, rgba(30,144,255,0.20), transparent 58%),
+      radial-gradient(820px 460px at -12% 112%, rgba(255,219,30,0.13), transparent 55%),
+      linear-gradient(180deg, #0b1124 0%, var(--bg) 48%, #070a14 100%);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    gap: 11pt;
+  }
+
+  /* faint parallax clouds, like the game backdrop */
+  .page::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60px 26px at 18% 30%, rgba(255,255,255,0.05), transparent 70%),
+      radial-gradient(80px 30px at 70% 22%, rgba(255,255,255,0.045), transparent 70%),
+      radial-gradient(50px 22px at 40% 64%, rgba(255,255,255,0.035), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .page > * { position: relative; z-index: 1; }
+
+  /* dashed flight-path swoosh behind the hero */
+  .flightpath {
+    position: absolute;
+    top: 0.55in; right: 0; width: 4.4in; height: 2in;
+    z-index: 0; pointer-events: none; opacity: 0.85;
+  }
+
+  /* ----------------------------- Masthead ----------------------------- */
+  .masthead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 9pt;
+    border-bottom: 1.5px solid var(--hairline);
+  }
+  .brand { display: flex; align-items: center; gap: 11px; }
+  .bird { width: 46px; height: 38px; filter: drop-shadow(0 3px 8px rgba(255,219,30,0.45)); flex: none; }
+  .wordmark {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900; font-style: italic;
+    font-size: 30pt; line-height: 0.92;
+    letter-spacing: -0.5px; margin: 0;
+  }
+  .wordmark .fit { color: var(--ink); }
+  .wordmark .flap { color: var(--accent); }
+  .kicker {
+    font-family: 'Space Mono', monospace;
+    font-size: 6.6pt; letter-spacing: 2.4px; text-transform: uppercase;
+    color: var(--muted); margin-top: 3px;
+  }
+
+  .badges { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; padding-top: 2px; }
+  .pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 6.6pt; letter-spacing: 1.4px; text-transform: uppercase;
+    padding: 4px 9px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--muted);
+    white-space: nowrap;
+  }
+  .pill.live {
+    color: #06210f; background: var(--green); border-color: transparent; font-weight: 700;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .pill.live::before { content:""; width:6px; height:6px; border-radius:50%; background:#06210f; }
+  .pill.demo { color: var(--accent); border-color: rgba(255,219,30,0.4); }
+
+  /* ----------------------------- Hero ----------------------------- */
+  .hero { padding: 1pt 0 2pt; }
+  .hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900; font-style: italic;
+    font-size: 47pt; line-height: 0.9; letter-spacing: -1.5px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .hero h1 .y { color: var(--accent); }
+  .hero p {
+    margin: 9pt 0 0;
+    font-size: 10pt; line-height: 1.42; color: var(--muted);
+    max-width: 6.5in;
+  }
+  .hero p strong { color: var(--ink); font-weight: 700; }
+  .hero p .demo-name { color: var(--accent); font-weight: 700; }
+
+  /* ----------------------------- Section labels ----------------------------- */
+  .lbl {
+    font-family: 'Space Mono', monospace;
+    font-size: 7pt; letter-spacing: 2.6px; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 6pt;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .lbl::after { content:""; flex:1; height:1px; background: var(--hairline); }
+
+  /* ----------------------------- Main grid ----------------------------- */
+  .grid {
+    display: grid;
+    grid-template-columns: 1.34fr 1fr;
+    gap: 16pt;
+    flex: 1;
+    min-height: 0;
+  }
+  .col { display: flex; flex-direction: column; gap: 11pt; }
+
+  .block p.body { margin: 0; font-size: 8.6pt; line-height: 1.45; color: var(--muted); }
+  .block p.body b { color: var(--ink); font-weight: 700; }
+
+  /* How it works — numbered steps */
+  .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; }
+  .step {
+    display: flex; gap: 8px;
+    background: var(--panel); border: 1px solid var(--hairline);
+    border-radius: 10px; padding: 8pt 9pt;
+  }
+  .step .n {
+    font-family: 'Space Mono', monospace; font-weight: 700;
+    font-size: 11pt; color: var(--accent); line-height: 1; flex: none;
+    width: 16px;
+  }
+  .step .t { font-size: 8pt; line-height: 1.36; color: var(--muted); }
+  .step .t b { color: var(--ink); font-weight: 700; }
+
+  /* Why different */
+  .why { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6pt; }
+  .why li { display: flex; gap: 9px; font-size: 8.6pt; line-height: 1.36; color: var(--muted); }
+  .why li b { color: var(--ink); font-weight: 700; }
+  .why li::before {
+    content: "▸"; color: var(--electric); font-size: 8.5pt; line-height: 1.5; flex: none;
+  }
+
+  /* Right column panel (HUD-styled) */
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 11pt 12pt;
+  }
+  .ship .lbl { color: var(--ink); }
+  .ship .lbl::before { content:"✦"; color: var(--accent); margin-right: 2px; }
+  .ship ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6.5pt; }
+  .ship li { display: flex; gap: 8px; font-size: 8pt; line-height: 1.32; color: var(--muted); }
+  .ship li b { color: var(--ink); font-weight: 700; }
+  .ship li .ck {
+    color: var(--green); font-weight: 700; flex: none; font-size: 8.5pt; line-height: 1.3;
+  }
+
+  .ai { margin-top: 11pt; }
+  .ai .lbl { color: var(--electric); }
+  .ai .lbl::after { background: rgba(30,144,255,0.25); }
+  .ai p { margin: 0; font-size: 8pt; line-height: 1.42; color: var(--muted); }
+  .ai p b { color: var(--ink); font-weight: 700; }
+  .ai .model { color: var(--electric); font-weight: 700; font-family: 'Space Mono', monospace; font-size: 7.6pt; }
+  .ai .quote {
+    margin-top: 8pt; padding: 8pt 10pt;
+    border-left: 2.5px solid var(--accent);
+    background: rgba(255,219,30,0.06);
+    border-radius: 0 8px 8px 0;
+    font-size: 7.8pt; line-height: 1.4; color: var(--ink); font-style: italic;
+  }
+  .ai .quote .q-t { color: var(--accent); font-weight: 700; font-style: normal; }
+
+  /* ----------------------------- Stat strip ----------------------------- */
+  .stats {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 8pt;
+  }
+  .stat {
+    background: linear-gradient(180deg, var(--bg2), rgba(18,26,48,0.4));
+    border: 1px solid var(--hairline);
+    border-radius: 11px; padding: 8pt 6pt; text-align: center;
+  }
+  .stat .v {
+    font-family: 'Space Mono', monospace; font-weight: 700;
+    font-size: 16pt; line-height: 1; color: var(--accent);
+  }
+  .stat .k {
+    font-family: 'Space Mono', monospace;
+    font-size: 6.2pt; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--muted); margin-top: 5px;
+  }
+
+  /* ----------------------------- Footer strip ----------------------------- */
+  .footer {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14pt;
+    padding-top: 9pt; border-top: 1.5px solid var(--hairline);
+  }
+  .foot h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 6.6pt; letter-spacing: 1.8px; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 4pt;
+  }
+  .foot p { margin: 0; font-size: 7.4pt; line-height: 1.42; color: var(--faint); }
+  .foot p b { color: var(--muted); font-weight: 600; }
+
+  .signoff {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+    margin-top: 8pt;
+  }
+  .signoff .tag {
+    font-family: 'Archivo', sans-serif; font-style: italic; font-weight: 800;
+    font-size: 10.5pt; color: var(--ink); letter-spacing: -0.3px;
+  }
+  .signoff .tag .y { color: var(--accent); }
+  .signoff .meta {
+    font-family: 'Space Mono', monospace; font-size: 6.4pt; letter-spacing: 1px;
+    color: var(--faint); text-transform: uppercase; text-align: right; white-space: nowrap;
+  }
+
+  /* ----------------------------- Print button (screen only) ----------------------------- */
+  .printbtn {
+    position: fixed; bottom: 22px; right: 22px; z-index: 99;
+    font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 1px;
+    text-transform: uppercase; font-weight: 700;
+    background: var(--accent); color: #1a1500; border: none;
+    padding: 12px 18px; border-radius: 999px; cursor: pointer;
+    box-shadow: 0 8px 28px rgba(255,219,30,0.35);
+  }
+  .printbtn:hover { filter: brightness(1.05); }
+
+  /* ----------------------------- Print ----------------------------- */
+  @page { size: Letter; margin: 0; }
+  @media print {
+    html, body { background: #fff; }
+    body { display: block; padding: 0; }
+    .page {
+      width: 8.5in; height: 11in; box-shadow: none; margin: 0;
+      break-after: avoid; page-break-after: avoid;
+    }
+    .printbtn { display: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<button class="printbtn" onclick="window.print()">⤓ Save as PDF</button>
+
+<div class="page">
+
+  <!-- decorative flight path -->
+  <svg class="flightpath" viewBox="0 0 440 200" fill="none" aria-hidden="true">
+    <path d="M-10 170 C 90 150, 130 60, 230 70 S 380 140, 450 40"
+          stroke="rgba(255,219,30,0.30)" stroke-width="2.5" stroke-dasharray="3 8" stroke-linecap="round"/>
+  </svg>
+
+  <!-- ============================ MASTHEAD ============================ -->
+  <header class="masthead">
+    <div class="brand">
+      <svg class="bird" viewBox="0 0 60 48" aria-hidden="true">
+        <ellipse cx="27" cy="25" rx="18" ry="17" fill="#ffdb1e"/>
+        <ellipse cx="22" cy="30" rx="11" ry="7" fill="#f3b700" transform="rotate(-18 22 30)"/>
+        <circle cx="34" cy="19" r="6" fill="#fff"/>
+        <circle cx="36" cy="19" r="3" fill="#101010"/>
+        <path d="M44 22 L56 25 L44 29 Z" fill="#ff7a18"/>
+      </svg>
+      <div>
+        <h2 class="wordmark"><span class="fit">FIT</span><span class="flap">FLAP</span></h2>
+        <div class="kicker">Motion-Controlled Fitness Gaming</div>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="pill">Stanford × Red Bull · Hackathon</span>
+      <span class="pill demo">Demo: Flappy Workout — Game 01</span>
+      <span class="pill live">Live working prototype</span>
+    </div>
+  </header>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <h1>Do reps<br/>to <span class="y">fly.</span></h1>
+    <p>
+      FitFlap makes your <strong>body the controller</strong>. Strap a phone to your arm,
+      raise and lower it, and pilot a bird through obstacles in real time — the workout
+      <strong>is</strong> the game, not a tracker you check afterward. Our hackathon demo,
+      <span class="demo-name">Flappy Workout</span>, runs entirely in the browser with an
+      iPhone as the controller and a laptop as the screen.
+    </p>
+  </section>
+
+  <!-- ============================ MAIN GRID ============================ -->
+  <div class="grid">
+
+    <!-- LEFT -->
+    <div class="col">
+      <div class="block">
+        <p class="lbl">The Problem</p>
+        <p class="body">
+          People quit workouts because they feel <b>repetitive and lonely</b>. Fitness apps
+          track <b>after</b> you sweat — they don't make the set itself fun. VR fitness does,
+          but it's expensive, bulky, and overkill for a quick daily burn.
+        </p>
+      </div>
+
+      <div class="block">
+        <p class="lbl">How It Works</p>
+        <div class="steps">
+          <div class="step"><div class="n">1</div><div class="t"><b>Open on a laptop.</b> The game shows a QR code — no app, no install.</div></div>
+          <div class="step"><div class="n">2</div><div class="t"><b>Scan with your iPhone.</b> It pairs over a WebSocket relay and becomes your motion controller.</div></div>
+          <div class="step"><div class="n">3</div><div class="t"><b>Calibrate in 2 taps</b> (arm low / high). Now your arm drives the bird's height live.</div></div>
+          <div class="step"><div class="n">4</div><div class="t"><b>One up-and-down curl = 1 rep.</b> Thread the gaps, bank a score, climb the leaderboard.</div></div>
+        </div>
+      </div>
+
+      <div class="block">
+        <p class="lbl">Why It's Different</p>
+        <ul class="why">
+          <li><span><b>The workout is the game</b> — engagement happens during the set, not in a post-hoc dashboard.</span></li>
+          <li><span><b>No headset, no console, no install</b> — just the phone already on your arm and any screen.</span></li>
+          <li><span><b>A platform, not a game</b> — one motion controller spanning a library of workouts. Flappy Workout is Game 01.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col">
+      <div class="panel ship">
+        <p class="lbl">What We Shipped — Live Demo</p>
+        <ul>
+          <li><span class="ck">✓</span><span><b>iPhone ↔ laptop</b>, paired by QR over a WebSocket relay — 100% browser, zero install.</span></li>
+          <li><span class="ck">✓</span><span><b>Drift-free, mount-agnostic motion</b> — arm height from a gravity-vector sweep; works however the phone is strapped.</span></li>
+          <li><span class="ck">✓</span><span><b>Real rep detection</b> via hysteresis on a full up→down cycle.</span></li>
+          <li><span class="ck">✓</span><span><b>Difficulty that scales the workout</b> — gaps zig-zag and speed ramps, forcing wider arm sweeps.</span></li>
+          <li><span class="ck">✓</span><span><b>Volume tracking</b> — reps × weight = total lb / kg lifted.</span></li>
+          <li><span class="ck">✓</span><span><b>Live shared leaderboard</b> + a mouse fallback for instant demos.</span></li>
+          <li><span class="ck">✓</span><span><b>One-command deploy</b> to Google Cloud Run (auto-HTTPS, which is what unlocks iOS motion).</span></li>
+        </ul>
+
+        <div class="ai">
+          <p class="lbl">AI · Gemini</p>
+          <p>
+            A tap calls <span class="model">gemini-2.5-flash</span> to mint a fresh challenge —
+            a catchy <b>title</b>, a hype <b>line</b>, and a <b>rep goal</b> (10–50) — different
+            every round. A built-in fallback means the demo <b>never breaks</b>, even offline.
+          </p>
+          <div class="quote">
+            <span class="q-t">Steady Wings —</span> 35 smooth raises in 90s. Control the shake, not just the rep.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ STAT STRIP ============================ -->
+  <section class="stats">
+    <div class="stat"><div class="v">~60<span style="font-size:8pt">Hz</span></div><div class="k">Motion streamed</div></div>
+    <div class="stat"><div class="v">2</div><div class="k">Taps to calibrate</div></div>
+    <div class="stat"><div class="v">0</div><div class="k">Installs needed</div></div>
+    <div class="stat"><div class="v">1</div><div class="k">Phone = controller</div></div>
+    <div class="stat"><div class="v">∞</div><div class="k">Games on platform</div></div>
+  </section>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer>
+    <div class="footer">
+      <div class="foot">
+        <h4>Market</h4>
+        <p>Fitness apps × wearables × mobile gaming — and <b>everyone already owns the sensor</b> in their pocket.</p>
+      </div>
+      <div class="foot">
+        <h4>Business Model</h4>
+        <p>Free app → <b>premium modes, AI plans, friend leagues</b>, optional wearable, and school / gym / corporate deals.</p>
+      </div>
+      <div class="foot">
+        <h4>Go-To-Market</h4>
+        <p>Inherently shareable — people sweating &amp; laughing on camera → <b>Reels / TikTok / Shorts</b>, friend challenges, dorm &amp; gym micro-leagues.</p>
+      </div>
+      <div class="foot">
+        <h4>Vision</h4>
+        <p>The easiest way to turn <b>any short workout into a game</b>. Open it to play; finish realizing you just trained.</p>
+      </div>
+    </div>
+    <div class="signoff">
+      <div class="tag">You came to play. You <span class="y">left stronger.</span></div>
+      <div class="meta">Node · Express · WebSocket · Canvas · Gemini · Cloud Run</div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
